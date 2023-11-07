@@ -1,6 +1,3 @@
-const movieInput = document.body.querySelector("#movieInput");
-const movieGallery = document.body.querySelector("#movieGallery");
-
 const movies = [
   [
     "The Shawshank Redemption",
@@ -947,69 +944,46 @@ const movies = [
     "8.3",
   ],
 ];
+const movieInput = document.body.querySelector("#movieInput");
+const movieGallery = document.body.querySelector("#movieGallery");
 
-movies.forEach((elt) => {
-  return elt;
-});
-
-const movieName = movies[0];
-
-const draw = (x) => {
+const moviesOutput = () => {
   movieGallery.innerHTML = "";
-
-  const moviesList = x || movies;
-
-  moviesList.forEach((movie) => {
-    const div = document.createElement("div");
-    div.style.backgroundColor = "yellowgreen";
-    div.style.padding = "2rem 2rem";
-    div.style.borderRadius = "1rem";
-    const h2 = document.createElement("h2");
-    h2.innerText = movie[0];
-
-    const h3 = document.createElement("h3");
-    h3.innerText = movie[2];
-    h3.style.marginTop = "0.5rem";
-    const p1 = document.createElement("p");
-    p1.innerText = movie[1];
-    p1.style.marginTop = "0.5rem";
-    const p2 = document.createElement("p");
-    p2.innerText = movie[3] + "\n" + movie[4].join("\n") + "\n" + movie[5];
-    p2.style.marginTop = "0.5rem";
-    p2.style.lineHeight = "1.5rem";
-
-    div.appendChild(h2);
-    div.appendChild(p1);
-    div.appendChild(h3);
-
-    div.appendChild(p2);
-    movieGallery.appendChild(div);
+  movies.forEach((elt) => {
+    movieGallery.innerHTML += `<div class=movie><h1>${elt[0]}</h1><p>${
+      elt[1]
+    }</p><h2>${elt[2]}</h2><p>${elt[3]}</p><p>${elt[4].join("<br>")}</p><p>${
+      elt[5]
+    }</p><div>`;
   });
 };
-
-draw();
+moviesOutput();
 
 const yearUp = () => {
-  movies.sort((a, b) => a[1] - b[1]);
-  draw();
+  movies.sort((x, y) => x[1] - y[1]);
+  moviesOutput();
 };
 
 const yearDown = () => {
-  movies.sort((b, a) => a[1] - b[1]);
-  draw();
+  movies.sort((y, x) => x[1] - y[1]);
+  moviesOutput();
 };
 
 const bestRate = () => {
-  movies.sort((b, a) => a[5] - b[5]);
-  draw();
+  movies.sort((x, y) => y[5] - x[5]);
+  moviesOutput();
 };
 
 const movieSearch = () => {
-  const movieFound = movies.filter((elt) => {
-    if (elt[0].toLowerCase() === movieInput.value) {
-      return elt;
-    }
+  movieGallery.innerHTML = "";
+  const moviesFilter = movies.filter((elt) =>
+    elt[0].toLowerCase().includes(movieInput.value.toLowerCase())
+  );
+  moviesFilter.forEach((elt) => {
+    movieGallery.innerHTML += `<div class=movie><h1>${elt[0]}</h1><p>${
+      elt[1]
+    }</p><h2>${elt[2]}</h2><p>${elt[3]}</p><p>${elt[4].join("<br>")}</p><p>${
+      elt[5]
+    }</p><div>`;
   });
-
-  draw(movieFound);
 };

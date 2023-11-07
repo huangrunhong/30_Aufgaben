@@ -1,0 +1,8 @@
+@media screen and (max-width: 1000px) {
+  .movieGallery {
+    padding-inline: 5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    gap: 1rem;
+  }
+}
