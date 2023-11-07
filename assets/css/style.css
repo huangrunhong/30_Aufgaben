@@ -16,6 +16,7 @@ section {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  align-items: center;
 }
 h1 {
   font-size: 2rem;
@@ -75,7 +76,7 @@ input {
 .movieGallery {
   padding-inline: 5rem;
   display: grid;
-  grid-template-columns: repeat(3, 30%);
+  grid-template-columns: repeat(3, 33%);
   gap: 1rem;
 }
 .movie {
