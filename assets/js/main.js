@@ -947,7 +947,7 @@ const movies = [
 const movieInput = document.body.querySelector("#movieInput");
 const movieGallery = document.body.querySelector("#movieGallery");
 
-const moviesOutput = () => {
+const renderMoviesList = () => {
   movieGallery.innerHTML = "";
   movies.forEach((elt) => {
     movieGallery.innerHTML += `<div class=movie><h1>${elt[0]}</h1><p>${
@@ -957,33 +957,36 @@ const moviesOutput = () => {
     }</p><div>`;
   });
 };
-moviesOutput();
 
-const yearUp = () => {
-  movies.sort((x, y) => x[1] - y[1]);
-  moviesOutput();
-};
+renderMoviesList();
 
-const yearDown = () => {
-  movies.sort((y, x) => x[1] - y[1]);
-  moviesOutput();
+const sortMovies = (index, ascending) => {
+  movieInput.value = "";
+  movies.sort((movie1, movie2) => movie2[index] - movie1[index]);
+  ascending && movies.reverse();
+  renderMoviesList();
 };
-
-const bestRate = () => {
-  movies.sort((x, y) => y[5] - x[5]);
-  moviesOutput();
-};
+const sortByYearAscending = () => sortMovies(1, true);
+const sortByYearDescending = () => sortMovies(1);
+const sortByRateDescending = () => sortMovies(5);
 
 const movieSearch = () => {
   movieGallery.innerHTML = "";
-  const moviesFilter = movies.filter((elt) =>
-    elt[0].toLowerCase().includes(movieInput.value.toLowerCase())
+
+  const moviesFilter = movies.filter((movie) =>
+    movie[0].toLowerCase().includes(movieInput.value.toLowerCase())
   );
-  moviesFilter.forEach((elt) => {
-    movieGallery.innerHTML += `<div class=movie><h1>${elt[0]}</h1><p>${
-      elt[1]
-    }</p><h2>${elt[2]}</h2><p>${elt[3]}</p><p>${elt[4].join("<br>")}</p><p>${
-      elt[5]
-    }</p><div>`;
+
+  if (!moviesFilter.length) {
+    return (movieGallery.innerHTML = "Movie is not found");
+  }
+
+  moviesFilter.forEach((movie) => {
+    console.log(moviesFilter);
+    movieGallery.innerHTML += `<div class=movie><h1>${movie[0]}</h1><p>${
+      movie[1]
+    }</p><h2>${movie[2]}</h2><p>${movie[3]}</p><p>${movie[4].join(
+      "<br>"
+    )}</p><p>${movie[5]}</p><div>`;
   });
 };

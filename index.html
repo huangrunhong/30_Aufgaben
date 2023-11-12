@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>30_Aufgaben_lvl_3_22</title>
+    <title>Projekt MovieDB</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="stylesheet" href="./assets/css/media1000px.css" />
     <link rel="stylesheet" href="./assets/css/media600px.css" />
@@ -18,11 +18,24 @@
           <button onclick="movieSearch()">SEARCH</button>
         </div>
         <div class="filter">
-          <input type="button" value="YEAR UP" onclick="yearUp()" />
-          <input type="button" value="YEAR DOWN" onclick="yearDown()" />
-          <input type="button" value="BEST RATE" onclick="bestRate()" />
+          <input
+            type="button"
+            value="YEAR UP"
+            onclick="sortByYearAscending()"
+          />
+          <input
+            type="button"
+            value="YEAR DOWN"
+            onclick="sortByYearDescending()"
+          />
+          <input
+            type="button"
+            value="BEST RATE"
+            onclick="sortByRateDescending()"
+          />
         </div>
       </form>
+      <p id="output"></p>
       <div class="movieGallery" id="movieGallery"></div>
     </section>
     <script src="./assets/js/main.js"></script>
